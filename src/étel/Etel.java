@@ -1,20 +1,21 @@
 package étel;
 
 import javax.swing.DefaultListModel;
+import javax.swing.SpinnerNumberModel;
 
 public class Etel extends javax.swing.JFrame {
 
-
-    
     DefaultListModel dlm = new DefaultListModel();
     DefaultListModel d2m = new DefaultListModel();
     DefaultListModel pirosdlm = new DefaultListModel();
     DefaultListModel zolddlm = new DefaultListModel();
     DefaultListModel kekdlm = new DefaultListModel();
     DefaultListModel feherdlm = new DefaultListModel();
-    
+
     public Etel() {
         initComponents();
+        SpinnerNumberModel spinnerModel = new SpinnerNumberModel(5, 0, Integer.MAX_VALUE, 5);
+        arForm.setModel(spinnerModel);
         arForm.setValue(5);
     }
 
@@ -368,7 +369,7 @@ public class Etel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       
+
         String etel = etelField.getText();
         int ar = (Integer) arForm.getValue();
         dlm.addElement(etel + " | " + ar);
@@ -378,24 +379,23 @@ public class Etel extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         String selected = valaszto.getSelectedValue();
-        
-        if(chbPiros.isSelected()){
+
+        if (chbPiros.isSelected()) {
             pirosdlm.addElement(selected);
             pirosList.setModel(pirosdlm);
-        }else if(chbZold.isSelected()){
+        } else if (chbZold.isSelected()) {
             zolddlm.addElement(selected);
             zoldList1.setModel(zolddlm);
-        }else if(chbKek.isSelected()){
+        } else if (chbKek.isSelected()) {
             kekdlm.addElement(selected);
             kekList.setModel(kekdlm);
-        }else if(chbFeher.isSelected()){
+        } else if (chbFeher.isSelected()) {
             feherdlm.addElement(selected);
             feherList.setModel(feherdlm);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
