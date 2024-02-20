@@ -1,6 +1,9 @@
 package étel;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 import javax.swing.SpinnerNumberModel;
 
 public class Etel extends javax.swing.JFrame {
@@ -40,7 +43,7 @@ public class Etel extends javax.swing.JFrame {
         pirosList = new javax.swing.JList<>();
         jPanel13 = new javax.swing.JPanel();
         jScrollPane12 = new javax.swing.JScrollPane();
-        zoldList1 = new javax.swing.JList<>();
+        zoldList = new javax.swing.JList<>();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane13 = new javax.swing.JScrollPane();
         kekList = new javax.swing.JList<>();
@@ -58,8 +61,8 @@ public class Etel extends javax.swing.JFrame {
         arForm = new javax.swing.JSpinner();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        etlapMenu = new javax.swing.JMenuItem();
+        asztalokMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,7 +163,7 @@ public class Etel extends javax.swing.JFrame {
 
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder("Zöld"));
 
-        jScrollPane12.setViewportView(zoldList1);
+        jScrollPane12.setViewportView(zoldList);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -338,11 +341,21 @@ public class Etel extends javax.swing.JFrame {
 
         jMenu2.setText("Fájlba ír");
 
-        jMenuItem2.setText("Étlap");
-        jMenu2.add(jMenuItem2);
+        etlapMenu.setText("Étlap");
+        etlapMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                etlapMenuActionPerformed(evt);
+            }
+        });
+        jMenu2.add(etlapMenu);
 
-        jMenuItem1.setText("Asztalok");
-        jMenu2.add(jMenuItem1);
+        asztalokMenu.setText("Asztalok");
+        asztalokMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asztalokMenuActionPerformed(evt);
+            }
+        });
+        jMenu2.add(asztalokMenu);
 
         jMenuBar1.add(jMenu2);
 
@@ -387,7 +400,7 @@ public class Etel extends javax.swing.JFrame {
             pirosList.setModel(pirosdlm);
         } else if (chbZold.isSelected()) {
             zolddlm.addElement(selected);
-            zoldList1.setModel(zolddlm);
+            zoldList.setModel(zolddlm);
         } else if (chbKek.isSelected()) {
             kekdlm.addElement(selected);
             kekList.setModel(kekdlm);
@@ -396,6 +409,52 @@ public class Etel extends javax.swing.JFrame {
             feherList.setModel(feherdlm);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void etlapMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etlapMenuActionPerformed
+
+        try {
+            FileWriter myWriter = new FileWriter("etlap.txt");
+            for (int i = 0; i < etlap.getModel().getSize(); i++) {
+                myWriter.write(etlap.getModel().getElementAt(i) + "\n");
+            }
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_etlapMenuActionPerformed
+
+    private void asztalokMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asztalokMenuActionPerformed
+        try {
+            FileWriter myWriter = new FileWriter("asztalok.txt");
+            myWriter.write("Piros\n");
+            for (int i = 0; i < pirosList.getModel().getSize(); i++) {
+                myWriter.write(pirosList.getModel().getElementAt(i) + "\n");
+            }
+            myWriter.write("\n");
+            myWriter.write("Zöld\n");
+            for (int i = 0; i < zoldList.getModel().getSize(); i++) {
+                myWriter.write(zoldList.getModel().getElementAt(i) + "\n");
+            }
+            myWriter.write("\n");
+            myWriter.write("Kék\n");
+            for (int i = 0; i < kekList.getModel().getSize(); i++) {
+                myWriter.write(kekList.getModel().getElementAt(i) + "\n");
+            }
+            myWriter.write("\n");
+            myWriter.write("Feher\n");
+            for (int i = 0; i < feherList.getModel().getSize(); i++) {
+                myWriter.write(feherList.getModel().getElementAt(i) + "\n");
+            }
+            myWriter.write("\n");
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_asztalokMenuActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -431,6 +490,7 @@ public class Etel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner arForm;
+    private javax.swing.JMenuItem asztalokMenu;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton chbFeher;
     private javax.swing.JRadioButton chbKek;
@@ -438,6 +498,7 @@ public class Etel extends javax.swing.JFrame {
     private javax.swing.JRadioButton chbZold;
     private javax.swing.JTextField etelField;
     private javax.swing.JList<String> etlap;
+    private javax.swing.JMenuItem etlapMenu;
     private javax.swing.JList<String> feherList;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -445,38 +506,25 @@ public class Etel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextArea jTextArea5;
-    private javax.swing.JTextArea jTextArea6;
     private javax.swing.JList<String> kekList;
     private javax.swing.JList<String> pirosList;
     private javax.swing.JList<String> valaszto;
-    private javax.swing.JList<String> zoldList1;
+    private javax.swing.JList<String> zoldList;
     // End of variables declaration//GEN-END:variables
 }
