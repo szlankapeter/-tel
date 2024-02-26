@@ -12,7 +12,7 @@ public class Cui {
             System.out.println(etlap.get(i).toString());
         }
         ArrayList<Asztal> a = e.getAsztalok();
-        for(int i=0;i<etlap.size();i++){
+        for(int i=0;i<a.size();i++){
             System.out.println(a.get(i).toString());
         }
     }
