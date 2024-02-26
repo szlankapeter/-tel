@@ -1,15 +1,16 @@
 Piros
-Sajt
-Kenyer
-asdasdas
+Babgulyás
+Somlói galuska
 
 Zöld
-Kenyer
-Sajt
+Rántott sajt
 
 Kék
-Kenyer
+Rántott hús
+Somlói galuska
+Rántott sajt
 
 Feher
-asdasdas
+Somlói galuska
+Babgulyás
 
